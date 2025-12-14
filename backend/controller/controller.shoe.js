@@ -6,9 +6,11 @@ const getShoes = (req, res) => {
     });
 }
 
-const getShoe = (req, res) => {
-    res.json({
-        message: "getShoe"
+const getShoe = async (req, res) => {
+    const getShoe = await ShoeModel.findById(req.params.id)
+
+    res.status(200).json({
+        getShoe
     });
 }
 
@@ -33,15 +35,34 @@ const addShoe = async (req, res) => {
         color
     });
 
-    return res.json({
+    return res.status(200).json({
         newShoe
     });
 }
 
-const editShoe = (req, res) => {
-    res.json({
-        message: "editShoe"
-    });
+const editShoe = async (req, res) => {
+    const shoe = await ShoeModel.findById(req.params.id);
+
+    try {
+        if(shoe) {
+            await ShoeModel.findByIdAndUpdate(
+                req.params.id, //shoe ID,
+                req.body,
+                {new: true}
+            );
+
+            res.status(200).json(shoe);
+        }
+        else {
+            res.json("NOT")
+        }
+    }
+    catch(err) {
+        return res.status(500).json({
+            message: "Error while updating shoe",
+            error: err.message
+        });
+    }
 }
 
 const deleteShoe = (req, res) => {
