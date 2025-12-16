@@ -1,9 +1,35 @@
 import React from 'react';
 import './App.css';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import axios from "axios";
+
+import Home from "./pages/Home";
+import MainNavigation from './Components/MainNavigation';
+
+const getAllShoes = async () => {
+  let allShoes = []
+  await axios.get("http://localhost:5000/shoe")
+  .then(res => {
+    allShoes = res.data
+  });
+  console.log("Allshoes from getAllShoes", allShoes)
+  return allShoes;
+}
+
+
+const router = createBrowserRouter([
+  {path: "/", element: <MainNavigation />, children: [
+    {path: "/", element: <Home/>, loader: getAllShoes}
+  ]}
+])
   
   const App = () => {
     return (
-      <div>App</div>
+      <>
+        <RouterProvider router={router}>
+
+        </RouterProvider>
+      </>
     )
   }
   

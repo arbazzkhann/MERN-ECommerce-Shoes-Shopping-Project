@@ -1,8 +1,11 @@
 const ShoeModel = require("../models/shoe.model");
 
-const getShoes = (req, res) => {
-    res.json({
-        message: "getShoes"
+const getShoes = async (req, res) => {
+    const getShoes = await ShoeModel.find();
+
+    res.status(200).json({
+        message: "All shoes",
+        getShoes
     });
 }
 

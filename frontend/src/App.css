@@ -101,10 +101,25 @@ section{
   cursor:pointer
 }
 
-.card{
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+.card {
+  width: 220px;
+  background: #1e1e1e;
+  border-radius: 12px;
+  overflow: hidden;
   text-align: center;
-  border-radius: 5px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card img {
+  margin: 16px auto 8px;
+  object-fit: contain;
+  display: block;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
 }
 
 .card-body{
@@ -112,16 +127,46 @@ section{
   padding: 1rem;
 }
 
-.card-body .title{
-  margin-bottom:5px;
-  font-size: 15px;
-  font-weight:500;
+.card-body {
+  background: #1294ff;
+  padding: 14px 12px;
+  color: #ffffff;
 }
 
-.card-body .icons{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-transform: capitalize;
+}
+
+.mrp {
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.strike-through {
+  text-decoration: line-through;
+  opacity: 0.8;
+  margin-right: 6px;
+}
+
+.mrp span:last-child {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.card-body svg {
+  margin-top: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.card-body svg:hover {
+  transform: scale(1.15);
+  color: #ff4d6d;
 }
 
 .card-body .timer{
@@ -287,4 +332,8 @@ section{
 .active{
   color:black !important;
   background-color: #0099ff;
+}
+
+.color-white {
+  color: rgb(75, 74, 74);
 }
