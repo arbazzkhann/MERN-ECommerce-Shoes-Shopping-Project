@@ -200,15 +200,18 @@ section{
   cursor: pointer;
 }
 
-.modal{
+.model{
   position: fixed;
   top: 34%;
   z-index: 10;
-  padding: 2rem;
-  border-radius: 6px;
-  border:none;
-  left:30%;
+  border: none;
+  left: 30%;
   width: 40%;
+  padding: 40px 50px;
+  background: linear-gradient(145deg, #0f0f0f, #151515);
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
 }
 
 .backdrop{
@@ -336,4 +339,87 @@ section{
 
 .color-white {
   color: rgb(75, 74, 74);
+}
+
+
+
+
+
+
+/* Extra CSS */
+.form-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.form-control label {
+  width: 120px;
+  font-size: 15px;
+  color: #e5e7eb;
+}
+
+.input {
+  flex: 1;
+  padding: 12px 14px;
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input::placeholder {
+  color: #9ca3af;
+}
+
+.input:focus {
+  border-color: #0ea5e9;
+  background: #1f1f1f;
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.25);
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.btn-primary {
+  padding: 10px 22px;
+  background: #0ea5e9;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #0284c7;
+  transform: translateY(-1px);
+}
+
+.link-text {
+  font-size: 14px;
+  color: #38bdf8;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.link-text:hover {
+  color: #7dd3fc;
+  text-decoration: underline;
+}
+
+.model h1 {
+  text-align: center;
+  position: relative;
+  top: -24;
 }
