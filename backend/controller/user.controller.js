@@ -52,12 +52,43 @@ const userSignup = async (req, res) => {
 }
 
 const userLogin = async (req, res) => {
+    const { email, password } = req.body;
 
+    const user = await UserModel.findOne({
+        email
+    });
+
+    if(!user) {
+        return res.status(400).json({
+            message: "Invalid credentials!"
+        });
+    }
+
+    const decryptPassword = await bcrypt.compare(password, user.password);
+
+    if(!decryptPassword) {
+        return res.status(400).json({
+            message: "Invalid credentials!"
+        });
+    }
+
+    let token = jwt.sign({email, id: user._id}, process.env.SECRET_KEY);
+
+    res.status(200).json({
+        message: "User found successfully :)",
+        user,
+        token
+    });    
 }
 
-
 const getUser = async (req, res) => {
-
+    const user = await UserModel.findById(req.params.id);
+    
+    res.status(200).json({
+        message: "User Found",
+        id: user._id,
+        email: user.email
+    });
 }
 
 
