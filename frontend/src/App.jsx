@@ -8,7 +8,7 @@ import MainNavigation from './Components/MainNavigation';
 
 const getAllShoes = async () => {
   let allShoes = []
-  await axios.get("http://localhost:5000/shoe")
+  await axios.get("http://localhost:5000/api/shoe")
   .then(res => {
     allShoes = res.data
   });
