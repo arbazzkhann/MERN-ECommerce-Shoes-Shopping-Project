@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const controller = require("../controller/controller.shoe");
+const controller = require("../controller/shoe.controller");
 
 router.get('/', controller.getShoes);  //get all shoes
 router.get('/:id', controller.getShoe); //get shoe by id
