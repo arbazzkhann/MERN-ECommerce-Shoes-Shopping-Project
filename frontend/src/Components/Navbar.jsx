@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Model from "./Model";
+import Modal from "./Modal";
 import InputForm from './InputForm';
 
 const Navbar = () => {
@@ -20,9 +20,9 @@ const Navbar = () => {
                 <li onClick={checkLogin}>Login</li>
             </ul>
         </header>
-        { isOpen && <Model onClose={() => setIsOpen(false)}>
+        { isOpen && <Modal onClose={() => setIsOpen(false)}>
                       <InputForm/>  {/*passing as a child*/}
-                    </Model>           
+                    </Modal>           
         }
     </>
   )
