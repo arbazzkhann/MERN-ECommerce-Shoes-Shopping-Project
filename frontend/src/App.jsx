@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import MainNavigation from './Components/MainNavigation';
 
 const getAllShoes = async () => {
-  let allShoes = []
+  let allShoes;
   await axios.get("http://localhost:5000/api/shoe")
   .then(res => {
     allShoes = res.data
@@ -19,7 +19,9 @@ const getAllShoes = async () => {
 
 const router = createBrowserRouter([
   {path: "/", element: <MainNavigation />, children: [
-    {path: "/", element: <Home/>, loader: getAllShoes}
+    {path: "/", element: <Home/>, loader: getAllShoes},
+    {path: "/shoes", element: <Home/>},
+    {path: "/favourites", element: <Home/>}
   ]}
 ])
   
