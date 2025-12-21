@@ -6,7 +6,6 @@ import { useLoaderData } from 'react-router-dom'
 
 const Shoes = () => {
     const getAllShoes = useLoaderData();
-    console.log("getAllShoes", getAllShoes);
 
   return (
     <>
