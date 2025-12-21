@@ -1,4 +1,18 @@
 const ShoeModel = require("../models/shoe.model");
+const multer  = require('multer');
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/images');
+  },
+  filename: function (req, file, cb) {
+    const fileName = Date.now() + '-' + file.fieldname + ".jpeg";
+    cb(null, fileName);
+  }
+});
+
+const upload = multer({ storage });
+
 
 const getShoes = async (req, res) => {
     const getShoes = await ShoeModel.find();
@@ -31,11 +45,14 @@ const addShoe = async (req, res) => {
         });
     }
 
+    console.log("req.file: ", req.file);
+
     const newShoe = await ShoeModel.create({
         title,
         mrp,
         price,
-        color
+        color,
+        image: req.file.filename
     });
 
     return res.status(200).json({
@@ -80,5 +97,7 @@ module.exports = {
     getShoe,
     addShoe,
     editShoe,
-    deleteShoe
+    deleteShoe,
+
+    upload //variable
 }
