@@ -6,18 +6,23 @@ const AddShoes = () => {
     const navigate = useNavigate();
     const [shoeData, setShoeData] = useState({});
 
-    const onHandleSubmit = async (e) => {
-        e.preventDefault();
-        console.log("shoeData: ", shoeData);
-        await axios.post("http://localhost:5000/api/shoe", shoeData)
-        .then(() => navigate("/"));
-    }
-
     const onHandleChange = (e) => {
-        let value = e.target.value;
+        let value = (e.target.name === "image") ? e.target.files[0] : e.target.value;
+        console.log("Image: ", e.target.files);
         setShoeData(pre => ({...pre, [e.target.name]: value}));
     }
 
+    const onHandleSubmit = async (e) => {
+        e.preventDefault();
+        console.log("shoeData: ", shoeData);
+        await axios.post("http://localhost:5000/api/shoe", shoeData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        })
+        // .then(() => navigate("/"));
+    }
+    
     return (
         <>
         <div className='container'>
@@ -40,7 +45,7 @@ const AddShoes = () => {
                 </div>
                 <div className='form-control'>
                     <label>Image</label>
-                    <input type="file" className='input' name="file"></input>
+                    <input type="file" className='input' name="image" onChange={onHandleChange}></input>
                 </div>
                 <button type="submit">Add Shoe</button>
             </form>
