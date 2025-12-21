@@ -7,8 +7,9 @@ const shoeRoute = require("./routes/shoe.route");
 const userRoute = require("./routes/user.route");
 
 const app = express();
-app.use(express.json());
-app.use(cors());
+app.use(express.json());  //for body
+app.use(cors());  //cors
+app.use(express.static("public"));  //public directory as static
 
 connectDB();
 

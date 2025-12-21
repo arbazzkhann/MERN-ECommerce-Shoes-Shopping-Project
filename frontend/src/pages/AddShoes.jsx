@@ -8,19 +8,17 @@ const AddShoes = () => {
 
     const onHandleChange = (e) => {
         let value = (e.target.name === "image") ? e.target.files[0] : e.target.value;
-        console.log("Image: ", e.target.files);
         setShoeData(pre => ({...pre, [e.target.name]: value}));
     }
 
     const onHandleSubmit = async (e) => {
         e.preventDefault();
-        console.log("shoeData: ", shoeData);
         await axios.post("http://localhost:5000/api/shoe", shoeData, {
             headers: {
                 "Content-Type": "multipart/form-data"
             }
         })
-        // .then(() => navigate("/"));
+        .then(() => navigate("/"));
     }
     
     return (
