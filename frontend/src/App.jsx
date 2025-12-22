@@ -16,11 +16,19 @@ const getAllShoes = async () => {
   return allShoes;
 }
 
+const getMyShoes = async () => {
+  let email = JSON.parse(localStorage.getItem("email"));
+  console.log("user from App.jsx: ", user);
+  
+  let allShoes = await getAllShoes();
+
+  return allShoes.filter(item => item.createdBy === user._id);
+}
 
 const router = createBrowserRouter([
   {path: "/", element: <MainNavigation />, children: [
     {path: "/", element: <Home/>, loader: getAllShoes},
-    {path: "/shoes", element: <Home/>},
+    {path: "/shoes", element: <Home/>, loader: getMyShoes},
     {path: "/favourites", element: <Home/>},
     {path: "/addShoes", element: <AddShoes/>}
   ]}
