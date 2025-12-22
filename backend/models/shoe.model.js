@@ -20,6 +20,10 @@ const shoeSchema = mongoose.Schema({
     image: {
         type: String,
         require: true
+    },
+    addedBy: {
+        type: mongoose.Types.ObjectId,
+        ref: "UserModel"
     }
 }, { collection: "shoe" });
 

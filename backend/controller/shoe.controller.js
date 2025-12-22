@@ -45,14 +45,13 @@ const addShoe = async (req, res) => {
         });
     }
 
-    console.log("req.file: ", req.file);
-
     const newShoe = await ShoeModel.create({
         title,
         mrp,
         price,
         color,
-        image: req.file.filename
+        image: req.file.filename,
+        addedBy: req.user.id
     });
 
     return res.status(200).json({

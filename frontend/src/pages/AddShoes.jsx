@@ -15,7 +15,8 @@ const AddShoes = () => {
         e.preventDefault();
         await axios.post("http://localhost:5000/api/shoe", shoeData, {
             headers: {
-                "Content-Type": "multipart/form-data"
+                "Content-Type": "multipart/form-data",
+                "authorization": "bearer " + localStorage.getItem("token")
             }
         })
         .then(() => navigate("/"));
