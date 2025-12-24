@@ -15,7 +15,11 @@ router.post(
     controller.addShoe //controller
 ); // add shoe
 
-router.put('/:id', controller.editShoe); //update shoe
+router.put('/:id', 
+    controller.upload.single('image'),  //upload from "multer"
+    authMiddleware.varifyToken,  //token varify middleware
+    controller.editShoe
+); //update shoe
 
 router.delete('/:id', controller.deleteShoe); //delete shoe
 

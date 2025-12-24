@@ -9,8 +9,7 @@ const Navbar = () => {
 
   const [isLogin, setIsLogin] = useState(token ? true : false);
   let email = JSON.parse(localStorage.getItem("email"));
-  console.log("user from Navbar.jsx: ", email);
-
+  
   useEffect(() => {
     setIsLogin(token ? true : false);
   }, [token])
@@ -30,7 +29,7 @@ const Navbar = () => {
   return (
     <>
         <header className='color-white'>
-            <NavLink to="/"><h2 className='header-heading'>Shoes</h2></NavLink>
+            <NavLink to="/"><h2 className='header-heading editIcon'>Shoes</h2></NavLink>
             <ul>
                 <li><NavLink to="/">Home</NavLink></li>
                 <li onClick={() => !isLogin && setIsOpen(true)}><NavLink to={ isLogin ? "/shoes" : "/" }>Shoes</NavLink></li>

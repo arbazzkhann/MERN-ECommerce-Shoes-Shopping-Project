@@ -66,7 +66,7 @@ const editShoe = async (req, res) => {
         if(shoe) {
             await ShoeModel.findByIdAndUpdate(
                 req.params.id, //shoe ID,
-                req.body,
+                {...req.body, image: req.file.filename},
                 {new: true}
             );
 
@@ -84,11 +84,23 @@ const editShoe = async (req, res) => {
     }
 }
 
-const deleteShoe = (req, res) => {
-    res.json({
-        message: "deleteShoe",
-        id: req.params.id
-    });
+const deleteShoe = async (req, res) => {
+    const shoe = await ShoeModel.findById(req.params.id);
+
+    try {
+        await ShoeModel.deleteOne({
+            _id: req.params.id
+        })
+        res.json(200).json({
+            message: "Item successfully deleted :)",
+            id: req.params.id
+        });
+    }
+    catch {
+        res.status(400).json({
+            message: "Error while deleting item :("
+        });
+    }
 }
 
 module.exports = {
