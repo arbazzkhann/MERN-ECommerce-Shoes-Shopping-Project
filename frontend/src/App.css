@@ -102,6 +102,7 @@ section{
 }
 
 .card {
+  position: relative;
   width: 220px;
   background: #1e1e1e;
   border-radius: 12px;
@@ -338,7 +339,7 @@ section{
 }
 
 .color-white {
-  color: rgb(75, 74, 74);
+  color: rgb(38, 38, 38);
 }
 
 
@@ -422,4 +423,27 @@ section{
   text-align: center;
   position: relative;
   top: -24;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.FaHeart {
+  position: absolute;
+  top: 7px;
+  right: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.FaHeart svg:hover {
+  transform: scale(1.15);
+  color: #ff4d6d;
+}
+
+.editIcon {
+  color: white
 }
