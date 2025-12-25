@@ -87,20 +87,28 @@ const editShoe = async (req, res) => {
 const deleteShoe = async (req, res) => {
     const shoe = await ShoeModel.findById(req.params.id);
 
-    try {
-        await ShoeModel.deleteOne({
-            _id: req.params.id
-        })
-        res.json(200).json({
-            message: "Item successfully deleted :)",
+    if(!shoe) {
+        return res.status(400).json({
+            message: "Item not found :(",
             id: req.params.id
         });
     }
-    catch {
-        res.status(400).json({
-            message: "Error while deleting item :("
-        });
-    }
+    else {
+        try {
+            await ShoeModel.deleteOne({
+                _id: req.params.id
+            })
+            res.status(200).json({
+                message: "Item successfully deleted :)",
+                id: req.params.id
+            });
+        }
+        catch {
+            res.status(400).json({
+                message: "Error while deleting item :("
+            });
+        }
+    }    
 }
 
 module.exports = {

@@ -32,7 +32,7 @@ const Navbar = () => {
             <NavLink to="/"><h2 className='header-heading editIcon'>Shoes</h2></NavLink>
             <ul>
                 <li><NavLink to="/">Home</NavLink></li>
-                <li onClick={() => !isLogin && setIsOpen(true)}><NavLink to={ isLogin ? "/shoes" : "/" }>Shoes</NavLink></li>
+                <li onClick={() => !isLogin && setIsOpen(true)}><NavLink to={ isLogin ? "/myShoes" : "/" }>Shoes</NavLink></li>
                 <li onClick={() => !isLogin && setIsOpen(true)}><NavLink to={ isLogin ? "/favourites" : "/" }>Favourites</NavLink></li>
                 <li onClick={checkLogin}>{(isLogin) ? "Logout" : "Login"} {email ? `(${email})` : ""}</li>
             </ul>

@@ -28,7 +28,7 @@ const getMyShoes = async () => {
 const router = createBrowserRouter([
   {path: "/", element: <MainNavigation />, children: [
     {path: "/", element: <Home/>, loader: getAllShoes},
-    {path: "/shoes", element: <Home/>, loader: getMyShoes},
+    {path: "/myShoes", element: <Home/>, loader: getMyShoes},
     {path: "/favourites", element: <Home/>},
     {path: "/addShoe", element: <AddShoe/>},
     {path: "/editShoe/:id", element: <EditShoe/>}

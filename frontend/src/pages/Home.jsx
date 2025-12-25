@@ -12,7 +12,7 @@ const Home = () => {
     const addShoes = () => {
         let token = localStorage.getItem("token");
         if(token) {
-            navigate("/addShoes");
+            navigate("/addShoe");
         }
         else {
             setIsOpen(true);
