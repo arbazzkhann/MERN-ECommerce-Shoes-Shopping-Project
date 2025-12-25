@@ -12,7 +12,6 @@ const varifyToken = async (req, res, next) => {
                 });
             }
             else {
-                console.log("decoded: ", decoded);
                 req.user = decoded;
             }
             next();

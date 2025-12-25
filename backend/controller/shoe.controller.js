@@ -1,5 +1,7 @@
 const ShoeModel = require("../models/shoe.model");
 const multer  = require('multer');
+const fs = require('fs');
+const path = require("path");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -95,9 +97,25 @@ const deleteShoe = async (req, res) => {
     }
     else {
         try {
+            //deleting image from files
+            const imagePath = path.join(
+                __dirname,
+                '..',           // goes from controller → backend
+                'public',
+                'images',
+                shoe.image
+            );
+
+            fs.unlink(imagePath, (err) => {
+                if (err) throw err;
+                console.log('Deleted image:', imagePath);
+            });
+
+            //deleting from DB
             await ShoeModel.deleteOne({
                 _id: req.params.id
-            })
+            });
+
             res.status(200).json({
                 message: "Item successfully deleted :)",
                 id: req.params.id
