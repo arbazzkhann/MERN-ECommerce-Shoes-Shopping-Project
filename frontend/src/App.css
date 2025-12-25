@@ -436,12 +436,12 @@ section{
   top: 7px;
   right: 5px;
   cursor: pointer;
-  transition: transform 0.2s ease, color 0.2s ease;
+  /* transition: transform 0.2s ease, color 0.2s ease; */
 }
 
 .FaHeart svg:hover {
   transform: scale(1.15);
-  color: #ff4d6d;
+  color: red;
 }
 
 .editIcon {

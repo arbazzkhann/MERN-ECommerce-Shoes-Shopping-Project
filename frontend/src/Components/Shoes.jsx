@@ -11,26 +11,35 @@ const Shoes = () => {
     const navigate = useNavigate();
     const getAllShoes = useLoaderData();
     const [allShoes, setAllShoes] = useState();
-    let path = window.location.pathname === "/myShoes" ? true : false;
-    console.log("path: ", path);
+    // let path = window.location.pathname === "/myShoes" ? true : false;
+
     //favourite shoes
-    const favouriteShoes = JSON.parse(localStorage.getItem("fav")) ?? [];
+    let favouriteShoes = JSON.parse(localStorage.getItem("fav")) ?? [];
+    const [isFavouriteShoe, setIsFavouriteShoe] = useState();
 
     console.log(allShoes);
 
     useEffect(() => {
-        setAllShoes(getAllShoes)
+        setAllShoes(getAllShoes);
     }, [getAllShoes])
 
     const deleteItem = async (id) => {
-        console.log("ID: ", id);
         await axios.delete(`http://localhost:5000/api/shoe/${id}`)
-        .then((res) => {
-            console.log("res: ", res);
-            console.log("res.data: ", res.data);
-        })
+
         setAllShoes(shoes => shoes.filter(shoe => shoe._id !== id));
+
+        let filterShoe = favouriteShoes.filter(shoe => shoe._id !== id);
+        localStorage.setItem("fav", JSON.stringify(filterShoe));
+
         navigate('./')
+    }
+
+    const favShoe = (item) => {
+        let filterShoe = favouriteShoes.filter(shoe => shoe._id !== item._id)
+        favouriteShoes = favouriteShoes.filter(shoe => shoe._id === item._id).length === 0 ? [...favouriteShoes, item] : filterShoe
+
+        localStorage.setItem("fav", JSON.stringify(favouriteShoes));
+        setIsFavouriteShoe(pre => !pre);
     }
 
   return (
@@ -42,7 +51,9 @@ const Shoes = () => {
                         <>
                             <div key={key} className='card'>
                                 <div className='FaHeart'>
-                                    <FaHeart />
+                                    <FaHeart onClick={() => favShoe(item)}
+                                        style={{color: (favouriteShoes.some(res => res._id === item._id)) ? "red" : ""}}
+                                    />
                                 </div>
                                 <img src={`http://localhost:5000/images/${item.image}`} alt="shoeImage" height="120px" width="100px" />
                                 <div className='card-body'>

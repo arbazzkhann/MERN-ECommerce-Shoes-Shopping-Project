@@ -25,11 +25,15 @@ const getMyShoes = async () => {
   return finalShoes
 }
 
+const getFavouriteShoes = () => {
+  return JSON.parse(localStorage.getItem("fav"))
+}
+
 const router = createBrowserRouter([
   {path: "/", element: <MainNavigation />, children: [
     {path: "/", element: <Home/>, loader: getAllShoes},
     {path: "/myShoes", element: <Home/>, loader: getMyShoes},
-    {path: "/favourites", element: <Home/>},
+    {path: "/favourites", element: <Home/>, loader: getFavouriteShoes},
     {path: "/addShoe", element: <AddShoe/>},
     {path: "/editShoe/:id", element: <EditShoe/>}
   ]}
